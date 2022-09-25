@@ -319,7 +319,6 @@ export default {
 .project .status {
   font-size: 60%; opacity: 0.5;
   font-family: monospace;
-  position: absolute;
   bottom: 2em;
 }
 .project .name {
