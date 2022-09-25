@@ -9,7 +9,7 @@
         <div class="event-date">September 5 - 16, 2022</div>
         <div class="event-location">Emmenbrücke</div>
       </a>
-    </a>
+    </div>
     <VoteBox class="votebox" :href="voteUrl" v-show="voteUrl" />
     <ChallengeGrid :src="dribdatApi" :toolbar="showToolbar" />
     <tt><a href="https://github.com/dribdat/backboard" target="_blank" style="text-decoration:none">backboard//</a>
