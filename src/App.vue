@@ -1,5 +1,15 @@
 <template>
   <div id="app">
+    <div class="header">
+      <a href="https://www.hslu.ch/de-ch/design-kunst/studium/studienuebergreifende-module/focus/dataskills/" target="_blank">
+        <img id="event-logo" src="https://www.hslu.ch/-/media/campus/common/images/header/hslu-logo.svg?la=de-ch" alt="Logo" title="HSLU">
+      </a>
+      <a href="https://dda.schoolofdata.ch/event/11/stages">
+        <h3 class="event-name">Data Skills</h3>
+        <div class="event-date">September 5 - 16, 2022</div>
+        <div class="event-location">Emmenbrücke</div>
+      </a>
+    </a>
     <VoteBox class="votebox" :href="voteUrl" v-show="voteUrl" />
     <ChallengeGrid :src="dribdatApi" :toolbar="showToolbar" />
     <tt><a href="https://github.com/dribdat/backboard" target="_blank" style="text-decoration:none">backboard//</a>
