@@ -83,11 +83,23 @@ export default {
 </script>
 
 <style>
+
+@font-face{
+  font-family: M3Regular;
+  src: url(./assets/m3regular-webfont.woff2) format("woff2"),
+       url(./assets/m3regular-webfont.woff) format("woff");
+  font-style: normal;
+}
+
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: M3Regular,"Open Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  /*font-family: "Avenir", Helvetica, Arial, sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+.description {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 #app.dark {
   background: black;
@@ -204,6 +216,12 @@ button.modal-close-button {
   box-shadow: none;
   padding: 0px;
   opacity: 0.5;
+}
+.modal-container button.modal-close-button {
+  margin: 0;
+  line-height: 0px;
+  position: relative;
+  right: -1em;
 }
 button.modal-close-button:hover {
   opacity: 1;

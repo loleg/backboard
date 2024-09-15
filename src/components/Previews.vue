@@ -29,24 +29,22 @@
 
           <div class="name">{{ project.name }}</div>
 
-          <div class="ident">{{ project.ident }}</div>
-          <div class="hashtag">{{ project.hashtag }}</div>
-          <div class="teamroster" 
-            v-for="person in project.team">
-              <span v-show="person">{{ person }}</span>
-          </div>
-
           <div class="summary">
             <p v-show="project.summary">{{ project.summary }}</p>
           </div>
 
+          <div class="ident">{{ project.ident }}</div>
+          <div class="hashtag">{{ project.hashtag }}</div>
+          <div class="teamroster">
+            <div v-for="person in project.team">
+              <span v-show="person">{{ person }}</span>
+            </div>
+          </div>
+
           <div class="status">
-            <span class="phase" title="Current project phase">
-              {{ project.phase }}
-            </span>
             <button title="Open project page" 
                    @click="seeDetails(project.url)">
-                   ◳ Open
+                   ◳ {{ project.phase }}
             </button>
             <button v-if="isEmbeddable(project)"
                     title="Open in a new window" 
@@ -94,6 +92,11 @@
               </div>
 
               <div class="fullscreen-controls">
+                <button v-if="project.download_url"
+                  class="fullscreen-demo-button"
+                  title="Open demo or download link"
+                  @click="seeDetails(project.download_url)">
+                       Demo</button>
                 <!--
                   // Time remaining
                   // Event name
@@ -289,18 +292,22 @@ export default {
 
 <style scoped>
 
-div, p {
+div, p, button {
+  font-family: M3Regular,"Open Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+div.content * {
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 .titlebar {
-  border-bottom: 0.5em solid transparent;
+  border-top: 0.5em solid transparent;
+  text-align: center;
   clear: both;
 }
 .name {
   margin-top: 0em;
   color: black;
-  font-weight: bold;
+  /*font-weight: bold;*/
   font-size: 2.5rem;
   line-height: 1.2;
   display: block;
@@ -319,8 +326,13 @@ div, p {
   color: #999;
 }
 .teamroster {
+  max-width: 80%;
+  text-align: left;
+  margin-bottom: 2em;
+  opacity: 0.5;
+}
+.teamroster div {
   display: inline;
-  float: right;
 }
 .teamroster span {
   margin: 0 0.4em;
@@ -328,7 +340,8 @@ div, p {
 }
 .teamroster span:before {
   content: '🏀 ';
-  font-size: 80%;
+  font-size: 50%;
+  white-space: nowrap;
   vertical-align: super;
 }
 .ident {
@@ -536,6 +549,10 @@ button.nav-prev {
   padding: 0px;
   margin: 0px;
 }
+button.fullscreen-demo-button {
+  right: 56px;
+  color: gray;
+}
 button.fullscreen-next-button {
   right: 30px;
 }
@@ -551,6 +568,8 @@ button.fullscreen-next-button {
     position: fixed;
     bottom: 0px;
     left: 50%;
+    text-align: center;
+    width: 40em;
     margin-left: -20em;
     margin-bottom: 0em;
     border-top-left-radius: 10px;
