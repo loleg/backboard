@@ -1,8 +1,8 @@
-# Backboard
+# Backboard App 
 
 This is a single page application (SPA) that visualizes data from `hackathon.json`, [Frictionless Data](https://frictionlessdata.io), or the [Dribdat API](https://dribdat.cc). 
 
-Features:
+## Features
 
 - Projects and challenges are shown for a specific event.
 - Flexible configuration options can be used for displaying and sorting the results.
@@ -10,6 +10,12 @@ Features:
 - You can also show presentations in full screen mode, use a mouse, keyboard or clicker to navigate through the slides. 
 - A subtle countdown timer bar is shown at the bottom of the screen to alert your presenters of the time available. 
 - Stylish countdown clock and all the event details can be enabled, for a quick loading home page for your event.
+
+**Demo:** https://backboard.vercel.app/
+
+![](doc/glamhack1.jpg)
+
+_Screenshot of the honeycomb view_
 
 The Backboard has minimal formatting, tight margins, and is ideal for embedding into your webpage anonuncing the upcoming event or results. If you are developing a Vue.js app, you can import the Challenges, Honeycomb and Preview components into your app.
 
@@ -20,7 +26,9 @@ Because it works like a static website, you can bundle the Data Package along wi
 **Tip:** You may want to enable *Challenges* and *Previews* (opens a modal dialog with swipable navigation) through clicking the `options` button found at the footer of the page (which opens a configuration menu). 
 Use the handy *Share* link to get a URL with your config.
 
-**Demo:** https://backboard.vercel.app/
+![](doc/glamhack2.jpg)
+
+_Screenshot of a project view_
 
 ## Installation
 
