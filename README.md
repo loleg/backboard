@@ -1,10 +1,10 @@
 # Backboard
 
-This is a single page application (SPA) that shows the projects and challenges for a hackathon event using the remote API of [Dribdat](https://dribdat.cc). 
+This is a single page application (SPA) that shows the projects and challenges for a hackathon event using [hackathon.json](https://codeberg.org/dribdat/hackathon.json/) or [Data Packages](https://frictionlessdata.io/). Usually this is connected to a remote API or export of data from [Dribdat](https://dribdat.cc), an open source hackathon management system. 
 
 Project data is shown for a specific event, with flexible configuration options for displaying and sorting the results in different ways. You can seamlessly navigate using your mouse or keyboard between projects and challenges. 
 
-Currently most functions link back to Dribdat, for example, when you click on the Join team button you get directed to the main web application. The long-term goal is to create a more modern, decoupled frontend for Dribdat.
+Currently some functions link back to Dribdat, for example, when you click on the **Join** team button you get directed to the main web application. These functions will be soon phased out and moved into a more modern, decoupled frontend.
 
 The Backboard has minimal formatting, tight margins, and is ideal for embedding into your webpage anonuncing the upcoming event or results. If you are developing a Vue.js app, you can import the Challenges, Honeycomb and Preview components into your app.
 
