@@ -29,7 +29,7 @@ Or use the `VUE_APP_DRIBDAT_URL` configured with a link to your dribdat event or
 
 You can use the following environment variables:
 
-- `VUE_APP_DRIBDAT_URL` (required) - fully qualified link to your [Dribdat](https://dribdat.cc) event, or online hosted Data Package (\* see examples)
+- `VUE_APP_DRIBDAT_URL` (required) - fully qualified link to your [Dribdat site](https://dribdat.cc), a specific event, or online hosted Data Package (\* see examples)
 - `VUE_APP_DEFAULT_OPTS` - the default display settings - copy the part after ? from the Share link.
 - `VUE_APP_HIDE_TOOLBAR` - makes the options toolbar in the footer unavailable.
 - `VUE_APP_VOTE_FORM_URL` - link to a form where you are collecting votes or feedback, otherwise the Dribs Post feature will be used.
@@ -38,10 +38,13 @@ You can use the following environment variables:
 
 \* Examples:
 
+- https://meta.dribdat.cc/
 - https://meta.dribdat.cc/event/5
-- https://meta.dribdat.cc/hackathon.json
-- https://meta.dribdat.cc/api/project/top.json
+- https://meta.dribdat.cc/event/5/hackathon.json
 - https://meta.dribdat.cc/api/event/current/datapackage.json
+- https://meta.dribdat.cc/api/project/top.json
+
+Pro tip: the JSON files could also be hosted elsewhere!
 
 ## Development
 
