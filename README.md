@@ -1,6 +1,8 @@
-# Backboard
+# Backboard 🏀
 
 This is a single page application (SPA) that visualizes data from `hackathon.json`, [Frictionless Data](https://frictionlessdata.io), or the [Dribdat API](https://dribdat.cc). 
+
+The Backboard has minimal formatting, tight margins, and is ideal for embedding into your webpage anonuncing the upcoming event or results. If you are developing a Vue.js app, you can import the Challenges, Honeycomb and Preview components into your project.
 
 Features:
 
@@ -10,8 +12,6 @@ Features:
 - You can also show presentations in full screen mode, use a mouse, keyboard or clicker to navigate through the slides. 
 - A subtle countdown timer bar is shown at the bottom of the screen to alert your presenters of the time available. 
 - Stylish countdown clock and all the event details can be enabled, for a quick loading home page for your event.
-
-The Backboard has minimal formatting, tight margins, and is ideal for embedding into your webpage anonuncing the upcoming event or results. If you are developing a Vue.js app, you can import the Challenges, Honeycomb and Preview components into your app.
 
 Currently most functions link back to Dribdat, for example, when you click on the Join team button you get directed to the main web application. The long-term goal is to create a more modern, decoupled frontend for Dribdat.
 
