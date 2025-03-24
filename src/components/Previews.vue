@@ -47,7 +47,7 @@
           <div class="hashtag">{{ project.hashtag }}</div>
           <div class="teamroster">
             <div v-for="person in project.team">
-              <span v-show="person">{{ person }}</span>
+              <a v-show="person" class="person" @click="seePerson(person)">{{ person }}</a>
             </div>
           </div>
 
@@ -257,6 +257,7 @@ export default {
   props: {
     projects: Array,
     selected: Number,
+    profileUrl: String,
     eventData: Object,
     activityData: Object,
     withButtons: Boolean,
@@ -297,8 +298,13 @@ export default {
     seeDetails: function (project_url) {
       window.open(project_url);
     },
+    seePerson: function (person) {
+      if (!this.profileUrl) return;
+      const userhref = this.profileUrl + person;
+      window.open(userhref);
+    },
     isEmbeddable: function (project) {
-      return project.webpage_url && project.is_webembed;
+      return project.webpage_url; // && project.is_webembed;
     },
     getEmbed: function (project) {
       if (!project.webpage_url) return "";
@@ -455,11 +461,11 @@ div.content * {
 .teamroster div {
   display: inline;
 }
-.teamroster span {
+.teamroster .person {
   margin: 0 0.4em;
   padding: 0 0.4em;
 }
-.teamroster span:before {
+.teamroster .person:before {
   content: "🏀 ";
   font-size: 50%;
   white-space: nowrap;
@@ -538,16 +544,20 @@ div.content * {
 }
 
 .autotext-link {
-  display: block;
-  border: 5px solid gainsboro;
-  border-radius: 5em;
-  color: blue;
-  font-weight: bold;
-  font-family: monospace;
-  font-size: 200%;
-  padding: 1em;
-  text-align: center;
+  display: inline-block;
   text-decoration: none;
+  color: #aaa;
+  font-weight: bold;
+  letter-spacing: 25%;
+  font-size: 150%;
+  text-align: left;
+  line-height: 0em;
+  margin: 1em 0em 0em;
+}
+@media (min-width: 768px) {
+  .autotext-link {
+    transform: translate(-2em, 0);
+  }
 }
 .autotext-open {
   display: block;
@@ -637,7 +647,7 @@ button.nav-prev {
 
 .webembed {
   width: 400px;
-  height: 240px;
+  height: 225px;
   max-width: 100%;
   border: 1px solid silver;
   box-shadow: 5px 5px 10px #cce;
@@ -660,13 +670,13 @@ button.nav-prev {
 @media (min-width: 768px) {
   .webembed {
     width: 600px;
-    height: 360px;
+    height: 338px;
   }
 }
 @media (min-width: 1280px) {
   .webembed {
-    width: 900px;
-    height: 540px;
+    width: 700px;
+    height:393px;
   }
 }
 .dark .webembed-fullscreen {

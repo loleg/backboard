@@ -33,7 +33,7 @@ export default {
     let apiUrl = null;
     let dribUrl = null;
     let eventId = null;
-    let baseUrl = process.env.VUE_APP_DRIBDAT_URL;
+    let baseUrl = process.env.VUE_APP_DRIBDAT_URL || null;
     if (baseUrl && !eventId && baseUrl.indexOf('/event/')>0) {
       eventId = baseUrl.match('/event/([0-9]+)');
       if (eventId !== null) {
@@ -81,6 +81,7 @@ export default {
         this.darkClass = '';
         document.body.style.backgroundColor = '';
       }
+      return '';
     },
   }
 };
@@ -213,6 +214,10 @@ a.options:hover {
 .options .modal-close-button {
   margin-top: -18px;
   margin-right: 10px;
+}
+.modal-container {
+  padding: 1em 0em;
+  width: 80%;
 }
 button.modal-close-button {
   background: transparent;
