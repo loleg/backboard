@@ -1,35 +1,39 @@
 <template>
   <div id="app" :class="darkClass">
-    <VoteBox class="votebox"
+    <ModalFrame class="framebox"
       :href="voteUrl" v-show="voteUrl" />
     <Challenges
       @closeToolbar="toggleOptions"
       @previewOff="previewOff"
       @previewOn="previewOn"
       @darkMode="darkMode"
-      :src="dribdatApi || dribdatHome" :toolbar="showToolbar" :options="defaultOptions" />
-    <tt>
-      <a href="https://github.com/dribdat/backboard" target="_blank" style="text-decoration:none">backboard//</a>
-      powered by <a href="https://dribdat.cc" target="_blank">dribdat</a>
-      <a v-if="allowToolbar" @click="toggleOptions" class="options">&#x1F3C0; <span>options</span></a>
+      :toolbar="showToolbar" 
+      :options="defaultOptions"
+      :dribs="dribdatDribs"
+      :src="dribdatApi || dribdatHome" />
+    <tt class="app-footer">
+      // human sourced with <a href="https://dribdat.cc" target="_blank">dribdat</a>
+      &#x1F3C0;
+      <a v-if="allowToolbar" @click="toggleOptions" class="options"><span>options</span></a>
     </tt>
   </div>
 </template>
 
 <script>
 import Challenges from "./components/Challenges";
-import VoteBox from "./components/VoteBox";
+import ModalFrame from "./components/ModalFrame";
 
 export default {
   name: "App",
   components: {
     Challenges,
-    VoteBox,
+    ModalFrame,
   },
   data() {
     let apiUrl = null;
+    let dribUrl = null;
     let eventId = null;
-    let baseUrl = process.env.VUE_APP_DRIBDAT_URL;
+    let baseUrl = process.env.VUE_APP_DRIBDAT_URL || null;
     if (baseUrl && !eventId && baseUrl.indexOf('/event/')>0) {
       eventId = baseUrl.match('/event/([0-9]+)');
       if (eventId !== null) {
@@ -41,10 +45,12 @@ export default {
     }
     if (baseUrl && eventId) {
       apiUrl = [baseUrl, "api/event", eventId, "datapackage.json"].join("/");
+      dribUrl = [baseUrl, "api/event", eventId, "activity.json?limit=500"].join("/");
     }
     let my_config = {
       dribdatApi: apiUrl,
       dribdatHome: baseUrl || '#top',
+      dribdatDribs: dribUrl || process.env.VUE_APP_DRIBS_URL || '',
       voteUrl: process.env.VUE_APP_VOTE_FORM_URL || '',
       allowToolbar: !(Boolean(process.env.VUE_APP_HIDE_TOOLBAR) || false),
       defaultOptions: process.env.VUE_APP_DEFAULT_OPTS || '',
@@ -75,17 +81,30 @@ export default {
         this.darkClass = '';
         document.body.style.backgroundColor = '';
       }
+      return '';
     },
   }
 };
 </script>
 
 <style>
+
+@font-face{
+  font-family: M3Regular;
+  src: url(./assets/m3regular-webfont.woff2) format("woff2"),
+       url(./assets/m3regular-webfont.woff) format("woff");
+  font-style: normal;
+}
+
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: M3Regular,"Open Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  /*font-family: "Avenir", Helvetica, Arial, sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+.description {
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 #app.dark {
   background: black;
@@ -98,7 +117,7 @@ body {
   color: #000;
   background-color: transparent;
 }
-.votebox {
+.framebox {
   margin: 2em;
 }
 a:active, a:hover {
@@ -112,6 +131,7 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
+.description img,
 .content img,
 .preview img {
   max-width: 100% !important;
@@ -127,7 +147,7 @@ a {
   outline-width: 0;
 }
 
-button {
+.btn, button {
   color: blue;
   background: white;
   border: 1px solid rgba(200,200,255,0.7);
@@ -139,6 +159,11 @@ button {
   text-decoration: none;
   cursor: pointer;
   padding: 6px 10px;
+  display: inline-block;
+}
+.btn {
+  font-size: initial;
+  margin-bottom: 1em;
 }
 button:hover {
   background: lightyellow;
@@ -173,18 +198,26 @@ button.tiny:hover {
   width: auto;
 }
 
-a.options {
-  text-decoration: none;
-  margin-left: 0.6em;
+.app-footer {
+  opacity: 0.6;
 }
-a.options span {
-  opacity: 0;
-}
-a.options:hover span {
+.app-footer:hover {
   opacity: 1;
+}
+a.options {
+  border: 1px solid transparent;
+  padding: 2px 5px;
+}
+a.options:hover {
+  border: 1px solid orange;
 }
 .options .modal-close-button {
   margin-top: -18px;
+  margin-right: 10px;
+}
+.modal-container {
+  padding: 1em 0em;
+  width: 80%;
 }
 button.modal-close-button {
   background: transparent;
@@ -192,6 +225,12 @@ button.modal-close-button {
   box-shadow: none;
   padding: 0px;
   opacity: 0.5;
+}
+.modal-container button.modal-close-button {
+  margin: 0;
+  line-height: 0px;
+  position: relative;
+  right: -1em;
 }
 button.modal-close-button:hover {
   opacity: 1;
