@@ -93,6 +93,10 @@
 
     <div class="options" v-show="toolbar">
       <button class="modal-close-button" @click="$emit('closeToolbar')" title="Close">⬡</button>
+      <span class="share-button btn">
+        🌐<a :href="shareUrl()">Share</a>
+      </span>
+      &nbsp;
       <input type="checkbox" v-model="isHeadline" id="isHeadline">
         <label for="isHeadline" title="Header">⛳</label>
       <input type="checkbox" v-model="isChallenges" id="isChallenges">
@@ -111,19 +115,16 @@
         <label for="isComments" title="Comment buttons">💬</label>
       <select v-model="darkMode" id="darkMode"
              @change="changeDark">
-        <option value="default" selected>🌗 Colors</option>
+        <option value="default" selected>🌗</option>
         <option v-for="option in darkOptions"
                 v-bind:value="option.id" >{{ option.name }}</option>
       </select>&nbsp;
       <select v-model="sortOrder" id="sortBy"
              @change="changeOrder">
-        <option value="default" selected>🡻 Sort</option>
+        <option value="default" selected>📚</option>
         <option v-for="option in sortOptions"
                 v-bind:value="option.id" >{{ option.name }}</option>
       </select>&nbsp;
-      <span class="share-button">
-        🌐<a :href="shareUrl()">Share</a>
-      </span>
     </div>
   </div>
 </template>
@@ -218,13 +219,16 @@ export default {
     // Override with URL parameter if default value set
     if (urlParams.get("src") && (!datasrc || datasrc == './datapackage.json')) {
       datasrc = urlParams.get("src").replaceAll('#', '');
-      if (datasrc.indexOf('/api/event')<0) {
+      if (datasrc.indexOf('/api/event')<0 && !datasrc.endsWith('datapackage.json')) {
         if (datasrc[datasrc.length-1] !== '/') this.src += '/';
         datasrc += 'api/event/current/datapackage.json';
       }
     }
     if (!datasrc) {
       return this.errorMessage = "No data source provided.";
+    }
+    if (!this.dribs && datasrc.endsWith('datapackage.json')) {
+      this.dribs = datasrc.replace('datapackage.json', 'posts.json?limit=200');
     }
     // Continue with loading event
     console.debug("Loading", datasrc);
