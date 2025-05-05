@@ -97,11 +97,12 @@
           </div>
         </div>
         <div class="content" slot="body">
-          <div class="preview" v-if="showExcerpt">
+          <div class="preview">
             <markdown
               class="excerpt"
               v-if="
-                !isEmbeddable(project) && !project.longtext && project.excerpt
+                 !project.longtext && project.excerpt &&
+                 !(showExcerpt && isEmbeddable(project))
               "
               :source="project.excerpt"
               :postrender="tweakPreview"
@@ -110,13 +111,13 @@
 
             <iframe
               class="webembed"
-              v-if="isEmbeddable(project)"
+              v-if="showExcerpt && isEmbeddable(project)"
               :src="getEmbed(project)"
             ></iframe>
 
             <div
               class="webembed-fullscreen"
-              v-if="isEmbeddable(project) && fullscreen"
+              v-if="showExcerpt && isEmbeddable(project) && fullscreen"
             >
               <div
                 id="ruigehond"
@@ -175,7 +176,7 @@
               ></iframe>
             </div>
             <button
-              v-if="isEmbeddable(project)"
+              v-if="showExcerpt && isEmbeddable(project)"
               class="go-fullscreen"
               @click="toggleFullscreen()"
               title="Open in full screen mode - tap ⬡ to close again"
@@ -303,11 +304,19 @@ export default {
       const userhref = this.profileUrl + person;
       window.open(userhref);
     },
+    isWithslides: function (project) {
+      return project.is_webembed && (
+        project.longtext.indexOf('\n---')>0 || 
+        project.longtext.indexOf('\n***')>0);
+    },
     isEmbeddable: function (project) {
-      return project.webpage_url; // && project.is_webembed;
+      return project.webpage_url || this.isWithslides(project);
     },
     getEmbed: function (project) {
-      if (!project.webpage_url) return "";
+      if (this.isWithslides(project))
+        return project.url + "/render";
+      if (!project.webpage_url) 
+        return "";
       return project.webpage_url.endsWith(".pdf")
         ? project.url + "/render"
         : project.webpage_url;
@@ -763,7 +772,7 @@ button.fullscreen-next-button {
   height: 10px;
   margin: 0;
   overflow: visible;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(0, 0, 0, 0);
 }
 #ruigehond.finished {
   animation-name: pulsate;
