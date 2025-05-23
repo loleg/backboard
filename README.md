@@ -8,7 +8,7 @@ Issues: https://codeberg.org/dribdat/backboard/issues
 
 ## Features
 
-- Projects, challenges, clocks are shown for a specific event.
+- Projects, challenges, clocks and more are shown for a specific event.
 - Flexible configuration options for displaying and sorting the results.
 - Seamlessly navigate using your mouse or keyboard between individual projects.
 - You can also show presentations in full screen mode, use a mouse, keyboard or clicker to navigate through the slides. 
