@@ -43,8 +43,11 @@ export default {
     } else if (!baseUrl) {
       apiUrl = './datapackage.json';
       dribUrl = './posts.json';
+    } else if (baseUrl.endsWith('datapackage.json')) {
+      apiUrl = baseUrl;
+      dribUrl = baseUrl.replace('datapackage.json', 'posts.json');
     }
-    if (baseUrl && eventId && !apiUrl.endsWith('datapackage.json')) {
+    if (baseUrl && eventId) {
       apiUrl = [baseUrl, "api/event", eventId, "datapackage.json"].join("/");
       dribUrl = [baseUrl, "api/event", eventId, "posts.json?limit=200"].join("/");
     }
