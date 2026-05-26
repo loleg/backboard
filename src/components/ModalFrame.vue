@@ -30,6 +30,11 @@ export default {
   components: {
     Modal,
   },
+  methods: {
+    isValidUrl(url) {
+      return url && (url.startsWith("http://") || url.startsWith("https://"));
+    },
+  },
   data() {
     return {
       framesrc: null,
@@ -49,7 +54,7 @@ export default {
       formref = formref + "/viewform?embedded=true";
     }
 
-    this.framesrc = formref;
+    this.framesrc = this.isValidUrl(formref) ? formref : null;
   },
 };
 </script>
