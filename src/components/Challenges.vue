@@ -389,9 +389,7 @@ export default {
               typeof p.team === "string"
                 ? p.team.replaceAll(",", " ").replaceAll("  ", " ").split(" ")
                 : p.team;
-            projects.value.push(p);
-          });
-          projects.value.forEach((p) => {
+            // Statistics and scores
             p.statistics = "";
             if (p.stats) {
               p.stats["bytes pitch"] = p.stats["sizepitch"];
@@ -404,6 +402,7 @@ export default {
               p.stats["score"] = p.score;
             }
             p.score = Math.min(p.score, 100);
+            projects.value.push(p);
           });
           if (data.title) {
             document.title = data.title;
@@ -428,9 +427,9 @@ export default {
                   return a.time < b.time;
                 });
                 const projectMap = new Map();
-                projects.value.forEach((p) => projectMap.set(p.id, p));
+                projects.value.forEach((p) => projectMap.set(String(p.id), p));
                 activities.value.forEach((el) => {
-                  const p = projectMap.get(el.project_id);
+                  const p = projectMap.get(String(el.project_id));
                   if (p) {
                     if (typeof p.activities === "undefined") {
                       p.activities = [];
