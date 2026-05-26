@@ -427,19 +427,15 @@ export default {
                 activities.value = data.activities.sort((a, b) => {
                   return a.time < b.time;
                 });
+                const projectMap = new Map();
+                projects.value.forEach((p) => projectMap.set(p.id, p));
                 activities.value.forEach((el) => {
-                  let proj = projects.value.filter((p) => {
-                    if (p.id == el.project_id) {
-                      if (typeof p.activities === "undefined") {
-                        p.activities = [];
-                      }
-                      p.activities.push(el);
-                      return true;
+                  const p = projectMap.get(el.project_id);
+                  if (p) {
+                    if (typeof p.activities === "undefined") {
+                      p.activities = [];
                     }
-                    return false;
-                  });
-                  if (!proj) {
-                    return;
+                    p.activities.push(el);
                   }
                 });
               })
