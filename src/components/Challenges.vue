@@ -382,9 +382,12 @@ export default {
             p.date = moment(p.updated_at).format("MMM Do, YYYY");
             p.image_url =
               typeof p.image_url === "undefined" ? null : p.image_url;
+            /*
+            // Use the event iage if no logo is available
             if (!p.image_url && data.event && data.event.logo_url) {
               p.image_url = data.event.logo_url;
             }
+            */
             p.team =
               typeof p.team === "string"
                 ? p.team.replaceAll(",", " ").replaceAll("  ", " ").split(" ")
@@ -447,7 +450,7 @@ export default {
           if (err.message.indexOf('not valid JSON')) {
             errorMessage.value = 'Could not load valid hackathon metadata.'
             console.warn(err.message);
-            console.log(datasrc);
+            console.debug(datasrc);
           } else {
             errorMessage.value = err;
           }
