@@ -383,7 +383,7 @@ export default {
     };
 
     const countDown = () => {
-      const TIMER_LENGTH_MINUTES = parseInt(import.meta.env.VITE_TIMER_LENGTH) || 3;
+      const TIMER_LENGTH_MINUTES = parseInt(import.meta.env.VITE_TIMER_LENGTH || 3);
       const pc_per_tick =
         TIMER_LENGTH_MINUTES > 0 ? 100 / (60 * TIMER_LENGTH_MINUTES) : 0;
       if (pc_per_tick == 0) return;
