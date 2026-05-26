@@ -97,6 +97,7 @@
                   class="webembed"
                   v-if="showExcerpt && isEmbeddable(project)"
                   :src="getEmbed(project)"
+                  sandbox="allow-scripts allow-same-origin"
                 ></iframe>
 
                 <div
@@ -152,6 +153,7 @@
                     class="webembed"
                     id="webembedframe"
                     :src="getEmbed(project)"
+                    sandbox="allow-scripts allow-same-origin"
                   ></iframe>
                 </div>
                 <button

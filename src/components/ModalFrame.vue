@@ -11,6 +11,7 @@
           frameborder="0"
           marginheight="0"
           marginwidth="0"
+          sandbox="allow-scripts allow-same-origin allow-forms"
           >Loading…</iframe
         >
       </div>
