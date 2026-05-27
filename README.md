@@ -6,18 +6,18 @@ This is a single page application (SPA) that visualizes data from [hackathon.jso
 
 Issues: <https://codeberg.org/dribdat/backboard/issues>
 
-Note: this is a new Vue 3 version, not all features are working yet! Please see the `vue-2` branch for the old releases.
+_Note: this is a new Vue 3 version, not all features are working yet! Please see the `vue-2` branch for the old releases._
 
 ## Features
 
 - Projects, challenges, clocks are shown for a specific event.
 - Flexible configuration options for displaying and sorting the results.
 - Seamlessly navigate using your mouse or keyboard between individual projects.
-- You can also show presentations in full screen mode, use a mouse, keyboard or clicker to navigate through the slides.
+- You can also show presentations in full screen mode, use a mouse, keyboard or clicker to navigate through slides.
 - A subtle countdown timer bar is shown at the bottom of the screen to alert your presenters of the time available.
 - Backboard is FAST, with a quick loading home page and instant navigation of the results of your event.
 
-Currently most functions link back to Dribdat, for example, when you click on the Join team button you get directed to the main web application. The long-term goal is to create a more modern, decoupled frontend for Dribdat.
+Currently most functions link back to Dribdat - for example, when you click on the Join team button you get directed to the main web application. The long-term goal is to create a more modern, decoupled frontend for Dribdat.
 
 The Backboard has minimal formatting, tight margins, and is ideal for embedding into your webpage announcing the upcoming event or results. If you are developing a Vue.js app, you can import the Challenges, Honeycomb and Preview components directly into your project.
 
@@ -31,8 +31,7 @@ Deploy this application with any service that supports Node.js
 
 Set up app options at the bottom of the page, then click the Share button, and paste the query string (everything after ?&) into your `VITE_DEFAULT_OPTS` variable.
 
-**Tip:** You may want to enable *Challenges* and *Previews* (opens a modal dialog with swipable navigation) through clicking the `options` button found at the footer of the page (which opens a configuration menu).
-Use the handy *Share* link to get a URL with your config.
+**Tip:** You may want to enable *Challenges* and *Previews* (opens a modal dialog with swipable navigation) through clicking the `options` button found at the footer of the page (which opens a configuration menu). This opens a list of icons which toggle various views in the backbaord. Use the handy *Share* link to get a URL with your specific configuration. You can also copy this URL into the `VITE_DEFAULT_OPTS` variable to make it persistent.
 
 ## Usage
 
