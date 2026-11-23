@@ -1,43 +1,31 @@
 {
   "events": [
     {
-      "name": "HACKnight 2017",
-      "datapackage_url": "data/2017/datapackage.json"
-    },
-    {
-      "name": "HACKnight 2018",
-      "datapackage_url": "data/2018/datapackage.json"
-    },
-    {
-      "name": "HACKnight 2019",
-      "datapackage_url": "data/2019/datapackage.json"
-    },
-    {
-      "name": "HACKnight 2020",
+      "name": "2020",
       "datapackage_url": "data/2020/datapackage.json"
     },
     {
-      "name": "HACKnight 2021",
+      "name": "2021",
       "datapackage_url": "data/2021/datapackage.json"
     },
     {
-      "name": "HACKnight 2022",
+      "name": "2022",
       "datapackage_url": "data/2022/datapackage.json"
     },
     {
-      "name": "HACKnight 2023",
+      "name": "2023",
       "datapackage_url": "data/2023/datapackage.json"
     },
     {
-      "name": "HACKnight 2024",
+      "name": "2024",
       "datapackage_url": "data/2024/datapackage.json"
     },
     {
-      "name": "HACKnight 2025",
+      "name": "2025",
       "datapackage_url": "data/2025/datapackage.json"
     },
     {
-      "name": "HACKnight 2026",
+      "name": "2026",
       "datapackage_url": "data/2026/datapackage.json"
     }
   ]
